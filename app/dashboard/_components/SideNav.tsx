@@ -38,7 +38,7 @@ function SideNav() {
 
 
   return (
-    <div className='h-screen p-5  shadow-none md:shadow-sm  border-none md:border  bg-neutral-900'>
+    <div className='h-screen p-5  shadow-none md:shadow-sm  max-sm:border-none border-2 border-zinc-800  bg-neutral-900'>
 
             <div className='flex justify-center rounded-lg'>
                 <Link href="/" className='flex gap-2 items-center p-2'>
@@ -47,14 +47,14 @@ function SideNav() {
                 </Link>   
             </div>
 
-        <hr className='my-6 border'/>
+        <hr className='my-6 border-2 border-zinc-800'/>
 
         <div className='mt-3'>
            {MenuList.map((menu, index) => (
                 <Link href={menu.path} key={index}>
-                    <div className={`flex gap-2 mb-2 p-3 hover:bg-primary hover:text-white rounded-lg cursor-pointer items-center duration-200 ${path == menu.path && 'bg-primary text-white'}`}>
-                        <menu.icon className='h-6 w-6'/>
-                        <h2>{menu.name}</h2>
+                    <div className={`flex gap-2 mb-2 p-3 hover:bg-orange-500 hover:text-white rounded-lg cursor-pointer items-center duration-200 ${path == menu.path && 'bg-orange-500 text-neutral-700'}`}>
+                        <menu.icon className='h-5 w-5 text-white'/>
+                        <h2 className='text-white font-bold'>{menu.name}</h2>
                     </div>
                 </Link>
            ))} 

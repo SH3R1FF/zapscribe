@@ -22,8 +22,11 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className={poppins.variable}>
-        <body className="dark:bg-black">
-            {children}
+        <body className="bg-neutral-900">
+
+            <div className="">
+              {children}
+            </div>
         </body>
       </html>
     </ClerkProvider>

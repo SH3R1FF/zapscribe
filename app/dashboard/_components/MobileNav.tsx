@@ -15,10 +15,10 @@ import SideNav from './SideNav'
 
 function MobileNav() {
   return (
-    <div className='md:hidden block'>
+    <div className='md:hidden block '>
         <Sheet>
-        <SheetTrigger><MenuIcon/></SheetTrigger>
-        <SheetContent>
+        <SheetTrigger><MenuIcon className='text-neutral-600'/></SheetTrigger>
+        <SheetContent className='bg-neutral-900 border-2 border-zinc-800'>
             <SheetHeader>
             <SheetTitle hidden>Are you absolutely sure?</SheetTitle>
             <SheetDescription hidden>

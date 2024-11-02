@@ -28,7 +28,7 @@ const CopyButton: React.FC<CopyButtonProps> = ({ textToCopy }) => {
   };
 
   return (
-    <Button variant="ghost" className="text-primary" onClick={copyToClipboard}>
+    <Button variant="ghost" className="text-zinc-600 hover:bg-orange-500 hover:text-neutral-900" onClick={copyToClipboard}>
       Copy
     </Button>
   );

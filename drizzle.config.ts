@@ -19,8 +19,7 @@ export default {
     schema : "./utils/schema.tsx",
     dialect: "postgresql",
     dbCredentials: {
-        // url: process.env.NEXT_PUBLIC_DRIZZLE_DB_URL!,
-        url: 'postgresql://zapscribe_owner:GJDPeMj2sqH4@ep-rough-meadow-a1cwc3z7.ap-southeast-1.aws.neon.tech/zapscribe?sslmode=require',
+        url: process.env.NEXT_PUBLIC_DRIZZLE_DB_URL!,
     },
     // out: "./drizzle",
 

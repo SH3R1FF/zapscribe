@@ -17,6 +17,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import logo from "../../../public/logo.svg"
+
 export interface HISTORY {
   id: number;
   formData: string;
@@ -41,21 +43,24 @@ async function History() {
       .from(AIOutput)
       .where(eq(AIOutput?.createdBy, userEmail))
       .orderBy(desc(AIOutput.id));
+      // console.log(moment(HistoryList[0]?.createdAt).format('DD/MM/YYYY'));
+      // console.log(HistoryList[0]?.createdAt ? new Date(HistoryList[0]?.createdAt).toLocaleDateString() : 'Unknown Date')
+      
   } catch (error) {
     console.error('Error fetching history:', error);
   }
 
   const GetTemplateName = (slug: string) => {
     const template = Templates?.find((item) => item.slug === slug);
-    return template || { name: 'Unknown', icon: '/default-icon.png' };
+    return template || { name: 'Unknown', icon: '/logo.svg' };
   };
 
   return (
-    <div className="m-5 p-5 border rounded-lg bg-white text-[8px] md:text-base">
-      <Table>
+    <div className="m-5 p-5 border border-zinc-800 rounded-lg bg-neutral-900 text-[8px] md:text-base">
+      <Table className='bg-neutral-900'>
         <TableCaption>A list of your recent generated responses.</TableCaption>
         <TableHeader>
-          <TableRow>
+          <TableRow className='text-white'>
             <TableHead className="w-[150px]">Template</TableHead>
             <TableHead className="w-[400px] max-w-[400px]">Response</TableHead>
             <TableHead className="w-[120px]">Date</TableHead>
@@ -63,12 +68,12 @@ async function History() {
             <TableHead className="text-right w-[60px]">Copy</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody>
+        <TableBody className='text-neutral-500'>
           {HistoryList.map((item: HISTORY, index: number) => (
             <TableRow key={index}>
               <TableCell className="">
                 <Image
-                  src={GetTemplateName(item.templateSlug)?.icon || '/default-icon.png'}
+                  src={GetTemplateName(item.templateSlug)?.icon || '/logo.svg'}
                   alt="Template Icon"
                   width={25}
                   height={25}
@@ -77,12 +82,14 @@ async function History() {
                 {GetTemplateName(item.templateSlug)?.name}
               </TableCell>
 
-              <TableCell className="line-clamp-3 max-w-[400px]">
+              <TableCell className="line-clamp-2 max-w-[400px]">
                 {item.aiResponse?.toString() ?? 'No Response'}
               </TableCell>
-              {/* <TableCell>{item.createdAt ? moment().format('DD/MM/YYYY') : 'Unknown Date'} </TableCell> */}
-              <TableCell>{item.createdAt ? moment().format("MMM Do YY ") : 'Unknown Date'}</TableCell>
+              {/* <TableCell>{item.createdAt ? moment(item.createdAt).format('DD/MM/YYYY') : 'Unknown Date'} </TableCell> */}
+              {/* <TableCell>{item.createdAt ? moment(item.createdAt).format("MMM Do YY ") : 'Unknown Date'}</TableCell> */}
               {/* <TableCell>{item.createdAt ? moment(item.createdAt).format("MMM Do YY") : 'Unknown Date'}</TableCell> */}
+              {/* <TableCell>{item.createdAt ? new Date(item?.createdAt). toLocaleDateString() : 'Unknown Date'}</TableCell> */}
+              <TableCell>{item.createdAt}</TableCell>
               
               <TableCell>{item.aiResponse?.length || 0}</TableCell>
               <TableCell className="text-right">

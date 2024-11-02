@@ -40,7 +40,7 @@ function TemplateListSection({userSearchInput}:any) {
   }, [userSearchInput])
 
   return (
-    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-10'>
+    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 p-10 bg-neutral-900'>
     {templateList && templateList.length > 0 ? 
           templateList.map((item:Template, index:number) => (
                 <TemplateCard {...item} key={index}/>
@@ -48,9 +48,9 @@ function TemplateListSection({userSearchInput}:any) {
           :<div className=''>
             <span className='text-2xl flex justify-center items-center'>
               😔
-              <h1 className='font-bold  text-gray-600'>No Template Found!</h1>
+              <h1 className='font-bold  text-neutral-700'>No Template Found!</h1>
             </span>
-            <p className='text-center text-gray-500'>Try with different keywords</p>
+            <p className='text-center text-neutral-500'>Try with different keywords</p>
           </div> 
 
           }
