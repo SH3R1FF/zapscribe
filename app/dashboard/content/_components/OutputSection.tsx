@@ -54,14 +54,17 @@ function OutputSection({ aiOutput }: Props) {
         </Button>
       </div>
       <Editor
+      apiKey='ax0558uf8uzegopw7uydn9lx7ngy5mma5mcx0qsh62x13it0'
         onInit={(evt, editor) => editorRef.current = editor}
         initialValue={converter.makeHtml(aiOutput)}
         init={{
           height: 450,
           menubar: false,
           plugins: 'link image code',
-          toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | code',
-          content_style: 'body { font-family:Arial,sans-serif; font-size:14px }',
+          // toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | code',
+          toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+          content_style: 'body { font-family:Arial,sans-serif; font-size:14px; background-color: #171717; color: #ffffff; }',
+    
         }}
       />
     </div>
