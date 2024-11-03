@@ -1,50 +1,41 @@
-import React, { useEffect } from 'react';
-import { EditorContent, useEditor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
+import React, { useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { types } from 'util';
-import TextAlign from '@tiptap/extension-text-align';
-import Toolbar from '@/components/Toolbar';
+import { Copy } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import { Editor } from "@tinymce/tinymce-react";
 
 interface Props {
   aiOutput: string;
 }
 
-const OutputSection = ({ aiOutput }: Props) => {
-  // Initialize the editor with the StarterKit extension and empty content.
-  const editor = useEditor({
-    extensions: [
-      StarterKit.configure(),
-      TextAlign.configure({
-        types: ['heading', 'paragraph'],
-      }),
+function OutputSection({ aiOutput }: Props) {
+  const editorRef = useRef<any>(null);
+  const { toast } = useToast();
 
-
-    ],
-    content: 'Write your content here...',
-    editorProps:{
-      attributes: {
-        class: 'rounded-md outline-none border-zinc-800 min-h-[450px] p-4 '
-      }
-    },
-  });
-
-  // Update the editor content whenever `aiOutput` changes.
+  // Use effect to set content when aiOutput changes
   useEffect(() => {
-    if (editor && typeof aiOutput === 'string') {
-      editor.commands.setContent(aiOutput);
+    if (editorRef.current && typeof aiOutput === 'string') {
+      editorRef.current.setContent(aiOutput); // Use setContent for TinyMCE
     }
-  }, [aiOutput, editor]);
+  }, [aiOutput]);
 
   const handleCopy = () => {
-    if (editor) {
-      const markdownText = editor.getText(); // Get editor's text content
-      navigator.clipboard.writeText(markdownText).then(() => {
-        alert('Copied to clipboard!');
-      }).catch((err) => {
-        console.error('Failed to copy text: ', err);
-        alert('Failed to copy text');
-      });
+    if (editorRef.current) {
+      const content = editorRef.current.getContent(); // Use getContent for TinyMCE
+      navigator.clipboard.writeText(content)
+        .then(() => {
+          toast({
+            title: "Success",
+            description: "Copied to clipboard!",
+          });
+        })
+        .catch((err) => {
+          console.error('Failed to copy text: ', err);
+          toast({
+            title: "Failed",
+            description: "Failed to copy text",
+          });
+        });
     }
   };
 
@@ -52,16 +43,27 @@ const OutputSection = ({ aiOutput }: Props) => {
     <div className='bg-neutral-900 shadow-lg border border-zinc-800 rounded-lg'>
       <div className='flex justify-between items-center p-5'>
         <h2 className='font-medium text-lg bg-[radial-gradient(100%_100%_at_top_left,white,white,#f97300)] text-transparent bg-clip-text '>Output</h2>
-        <Button onClick={handleCopy} className='bg-orange-500 hover:bg-amber-700 text-neutral-800'>Copy</Button>
+        <Button onClick={handleCopy} className='bg-orange-500 hover:bg-amber-700 text-neutral-800'>
+          <Copy />Copy
+        </Button>
       </div>
-      <Toolbar editor={editor} />
-      <EditorContent editor={editor} className="tiptap-editor text-white" />
+      <Editor
+        apiKey="i16nbk44ic2u5ppz5g2io7jvltyf2alfvizik2urz4f071ge" // Replace with your TinyMCE API key
+        onInit={(evt, editor) => editorRef.current = editor} // Set the editor instance on init
+        initialValue="Hello, World!"
+        init={{
+          height: 450,
+          menubar: false,
+          plugins: 'lists link image charmap preview anchor searchreplace visualblocks code',
+          toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image',
+          color_default_background: '#202020',
+          
+        }}
+        
+        
+      />
     </div>
   );
 }
 
 export default OutputSection;
-function configure(): import("@tiptap/core").AnyExtension {
-  throw new Error('Function not implemented.');
-}
-
