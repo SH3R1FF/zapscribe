@@ -1,8 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { Editor } from '@tinymce/tinymce-react';
+import Showdown from 'showdown';
 import { Button } from '@/components/ui/button';
 import { Copy } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { Editor } from "@tinymce/tinymce-react";
+
+const converter = new Showdown.Converter();
 
 interface Props {
   aiOutput: string;
@@ -12,17 +15,20 @@ function OutputSection({ aiOutput }: Props) {
   const editorRef = useRef<any>(null);
   const { toast } = useToast();
 
-  // Use effect to set content when aiOutput changes
   useEffect(() => {
-    if (editorRef.current && typeof aiOutput === 'string') {
-      editorRef.current.setContent(aiOutput); // Use setContent for TinyMCE
+    if (editorRef.current) {
+      // Convert Markdown to HTML and set it as the initial content
+      const htmlContent = converter.makeHtml(aiOutput);
+      editorRef.current.setContent(htmlContent);
     }
   }, [aiOutput]);
 
   const handleCopy = () => {
     if (editorRef.current) {
-      const content = editorRef.current.getContent(); // Use getContent for TinyMCE
-      navigator.clipboard.writeText(content)
+      const htmlContent = editorRef.current.getContent();
+      const markdownText = converter.makeMarkdown(htmlContent);
+
+      navigator.clipboard.writeText(markdownText)
         .then(() => {
           toast({
             title: "Success",
@@ -30,7 +36,7 @@ function OutputSection({ aiOutput }: Props) {
           });
         })
         .catch((err) => {
-          console.error('Failed to copy text: ', err);
+          console.error('Failed to copy text:', err);
           toast({
             title: "Failed",
             description: "Failed to copy text",
@@ -40,27 +46,23 @@ function OutputSection({ aiOutput }: Props) {
   };
 
   return (
-    <div className='bg-neutral-900 shadow-lg border border-zinc-800 rounded-lg'>
-      <div className='flex justify-between items-center p-5'>
-        <h2 className='font-medium text-lg bg-[radial-gradient(100%_100%_at_top_left,white,white,#f97300)] text-transparent bg-clip-text '>Output</h2>
-        <Button onClick={handleCopy} className='bg-orange-500 hover:bg-amber-700 text-neutral-800'>
+    <div className="bg-neutral-900 shadow-lg border border-zinc-800 rounded-lg">
+      <div className="flex justify-between items-center p-5">
+        <h2 className="font-medium text-lg bg-[radial-gradient(100%_100%_at_top_left,white,white,#f97300)] text-transparent bg-clip-text">Output</h2>
+        <Button onClick={handleCopy} className="bg-orange-500 hover:bg-amber-700 text-neutral-800">
           <Copy />Copy
         </Button>
       </div>
       <Editor
-        apiKey="i16nbk44ic2u5ppz5g2io7jvltyf2alfvizik2urz4f071ge" // Replace with your TinyMCE API key
-        onInit={(evt, editor) => editorRef.current = editor} // Set the editor instance on init
-        initialValue="Hello, World!"
+        onInit={(evt, editor) => editorRef.current = editor}
+        initialValue={converter.makeHtml(aiOutput)}
         init={{
           height: 450,
           menubar: false,
-          plugins: 'lists link image charmap preview anchor searchreplace visualblocks code',
-          toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image',
-          color_default_background: '#202020',
-          
+          plugins: 'link image code',
+          toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | code',
+          content_style: 'body { font-family:Arial,sans-serif; font-size:14px }',
         }}
-        
-        
       />
     </div>
   );
