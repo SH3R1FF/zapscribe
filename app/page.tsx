@@ -2,10 +2,19 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Header from "./dashboard/_components/Header";
 import Link from "next/link";
-import { BookOpenCheck, ChevronRight, LayoutPanelTop, MessagesSquare, SwatchBook } from "lucide-react";
+import { ArrowRightIcon, BookOpenCheck, ChevronRight, LayoutPanelTop, MessagesSquare, SwatchBook } from "lucide-react";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import MobileNav from "./dashboard/_components/MobileNav";
 import Footer from "@/components/Footer";
+import { RainbowButton } from "@/components/ui/rainbow-button";
+// import ShimmerButton from "@/components/ui/shimmer-button";
+import WordPullUp from "@/components/ui/word-pull-up";
+import HyperText from "@/components/ui/hyper-text";
+import AnimatedShinyText from "@/components/ui/animated-shiny-text";
+import { cn } from "@/lib/utils";
+import LetterPullup from "@/components/ui/letter-pullup";
+// import LetterPullup from "@/components/ui/letter-pullup";
+// import HyperText from "@/components/ui/hyper-text";
 
 export default function Home() {
   return (
@@ -37,22 +46,53 @@ export default function Home() {
 
       <div className="p-5 relative mt-20">
 
-                <div className="flex h-8 justify-center items-center w-full">
-                  <h2 className=' bg-white/85  flex justify-center items-center gap-2 rounded-full  text-neutral-900 font-semibold px-4 py-2'> 
+                    
+                {/* <div className="flex h-8 justify-center items-center w-full">
+                  <RainbowButton className=' bg-white/85  flex justify-center items-center gap-2 rounded-full  text-neutral-200 font-semibold px-4 py-2'> 
                     <p>
                       Latest updates on the way
                     </p>
-                    <p className=" bg-zinc-400/50 py-1 px-2 rounded-full">
-                      <ChevronRight className='h-4 w-4 text-gray-800 ' />  
+                    <p className=" bg-zinc-800 py-1 px-2 rounded-full">
+                      <ChevronRight className='h-4 w-4 text-gray-300 ' />  
                     </p>
-                  </h2>
+                  </RainbowButton>
+                
+                </div> */}
+
+                
+              {/* <div className="z-10 flex min-h-64 items-center justify-center">
+                <div
+                  className={cn(
+                    "group rounded-full border border-black/5 bg-neutral-100 text-base text-white transition-all ease-in hover:cursor-pointer hover:bg-neutral-200 dark:border-white/5 dark:bg-neutral-900 dark:hover:bg-neutral-800",
+                  )}
+                >
+                  <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
+                    <span>✨ Introducing Magic UI</span>
+                    <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+                  </AnimatedShinyText>
                 </div>
+              </div> */}
 
-            <h1 className="text-[78px] md:text-[148px] md:leading-none font-semibold tracking-tighter bg-white bg-[radial-gradient(100%_100%_at_top_left,white,white,#f97300)] text-transparent bg-clip-text text-center">
+              <div className="flex h-8 justify-center items-center w-full">
+                    <div
+                    className={cn(
+                      "group rounded-full bordertext-base text-orange-400 transition-all ease-in hover:cursor-pointer  border-white/5 bg-neutral-800 hover:bg-neutral-800/85",
+                    )}
+                  >
+                    <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:duration-300 hover:text-neutral-400 text-neutral-200">
+                      <span>✨ Introducing Zapscribe</span>
+                      <ArrowRightIcon className="ml-1 size-3 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5" />
+                    </AnimatedShinyText>
+                  </div>
+                
+              </div>
+
+            <div className="flex justify-center">
+              <LetterPullup className="text-[78px] md:text-[148px] md:leading-none font-semibold tracking-tighter bg-white bg-[radial-gradient(100%_100%_at_top_left,white,white,#f97300)] text-transparent bg-clip-text text-center" words={"Zapscribe"} delay={0.05}/>
+            </div>
             
-              Zapscribe
-            </h1>
 
+    
             <p className="text-lg md:text-xl max-w-xl mx-auto text-neutral-600 mt-10 text-center ">
             {/* Generate high-quality, unique content instantly with AI—perfect for all your writing needs! */}
             Generate tailored AI-driven content effortlessly with our app. From engaging posts to detailed articles, create high-quality content in seconds!
