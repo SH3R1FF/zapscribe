@@ -44,15 +44,17 @@ function FormSection({ selectedTemplate, userFormInput, loading }: Props) {
             <form className='mt-6' onSubmit={onSubmit}>
                 {selectedTemplate?.form?.map((item, index) => (
                     <div className='my-2 flex-col gap-2 mb-7' key={index}>
-                        <Label className='font-bold text-white'>{item.label}</Label>
+                        <Label className='font-bold text-neutral-300'>{item.label}</Label>
                         {item.field === 'input' ? (
-                            <Input className='border-zinc-800 text-neutral-500' name={item.name} required={item?.required} onChange={handleInputChange} />
+                            <Input className='border-zinc-800 text-neutral-500 mt-2' name={item.name} required={item?.required} onChange={handleInputChange} />
                         ) : item.field === 'textarea' ? (
-                            <Textarea className='border-zinc-800 text-neutral-500 h-32' name={item.name} required={item?.required} onChange={handleInputChange} />
+                            <Textarea className='border-zinc-800 text-neutral-500 h-32 mt-2' name={item.name} required={item?.required} onChange={handleInputChange} />
                         ) : null}
                     </div>
                 ))}
-                <Button type='submit' className='w-full py-6 bg-orange-500 hover:bg-amber-700 text-neutral-800' disabled={loading}>
+                {/* <Button type='submit' className='w-full py-6 bg-orange-500 hover:bg-amber-700 text-neutral-800' disabled={loading}> */}
+                <Button type='submit' className='w-full py-6 bg-orange-500 hover:bg-orange-400 rounded-full text-neutral-100' disabled={loading}>
+                {/* <Button type='submit' className='w-full py-6 bg-neutral-200 hover:bg-neutral-400 text-neutral-800' disabled={loading}> */}
                     {loading && <LoaderIcon className='animate-spin w-5 h-5 mr-3'/>}
                     Generate Content
                 </Button>

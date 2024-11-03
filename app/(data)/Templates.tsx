@@ -229,7 +229,7 @@ export default  [
     },
     {
         name: 'English Grammer Check',
-        desc: 'AI Model to Correct your english grammer by providing the text',
+        desc: 'AI Model to Correct your english grammer by providing the text respectively',
         icon:'https://cdn-icons-png.flaticon.com/128/12596/12596700.png',
         category: 'english',
        

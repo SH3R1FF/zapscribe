@@ -38,16 +38,16 @@ function SideNav() {
 
 
   return (
-    <div className='h-screen p-5  shadow-none md:shadow-sm  max-sm:border-none border-2 border-zinc-800  bg-neutral-900'>
+    <div className='h-screen p-5 shadow-none md:shadow-sm  max-md:border-none border-2 border-zinc-800  bg-neutral-900'>
 
             <div className='flex justify-center rounded-lg'>
-                <Link href="/" className='flex gap-2 items-center p-2'>
+                <Link href="/" className='flex gap-2 items-center py-2'>
                     <Image src={'/logo.svg'} alt='logo' width={32} height={32}/>
                     <span className='font-extrabold text-2xl text-white '>ZAPSCRIBE</span>
                 </Link>   
             </div>
 
-        <hr className='my-6 border-2 border-zinc-800'/>
+        <hr className='my-6 border-1 border-zinc-800'/>
 
         <div className='mt-3'>
            {MenuList.map((menu, index) => (

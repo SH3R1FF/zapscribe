@@ -22,18 +22,18 @@ export default function Home() {
 
       {/* <Header/> */}
 
-      <div className='px-8 max-sm:px-5 py-5 shadow-sm border-2 border-zinc-800 flex justify-between items-center bg-neutral-900'>
+      <div className='p-5 shadow-sm border-b-2 border-zinc-800 flex justify-between items-center bg-neutral-900'>
             <div className='flex justify-center rounded-lg'>
-                <Link href="/" className='flex gap-2 items-center p-2'>
-                    <Image src={'/logo.svg'} alt='logo' width={32} height={32}/>
-                    <span className='font-extrabold text-2xl text-white '>ZAPSCRIBE</span>
+                <Link href="/" className='flex gap-2 items-center max-sm:p-2 py-2 px-5'>
+                    <Image src={'/logo.svg'} alt='logo' width={32} height={32} className="max-sm:w-[25px] max-sm:h-[25px]"/>
+                    <span className='font-extrabold text-xl md:text-2xl text-white '>ZAPSCRIBE</span>
                 </Link>   
             </div>
         
-            <div className='flex gap-2 items-center'>
-                <h2 className='bg-orange-200 p-2 rounded-full text-xs text-neutral-900 font-semibold  px-2 max-sm:hidden'>
-                    Join Membership at just for $9.99 ✨
-                </h2>
+            <div className='flex gap-4 items-center'>
+                <Link href="/dashboard/billing" className='bg-orange-200 p-2 rounded-full text-xs text-neutral-900 font-semibold max-sm:hidden flex items-center'>
+                    Join Membership at just for $9.99 <ChevronRight className='h-4 w-4 '/>
+                </Link>
                 <SignedIn>
                     <UserButton 
                     // afterSignOutUrl="/"            
@@ -76,7 +76,7 @@ export default function Home() {
               <div className="flex h-8 justify-center items-center w-full">
                     <div
                     className={cn(
-                      "group rounded-full bordertext-base text-orange-400 transition-all ease-in hover:cursor-pointer  border-white/5 bg-neutral-800 hover:bg-neutral-800/85",
+                      "group rounded-full border text-base text-orange-400 transition-all ease-in hover:cursor-pointer  border-white/5 bg-neutral-800 hover:bg-neutral-800/85",
                     )}
                   >
                     <AnimatedShinyText className="inline-flex items-center justify-center px-4 py-1 transition ease-out hover:duration-300 hover:text-neutral-400 text-neutral-200">
@@ -106,18 +106,18 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="/dashboard">
-                <Button className="w-full md:w-auto bg-orange-200 text-black rounded-full px-3 py-2 flex flex-row justify-between items-center gap-2 hover:bg-orange-300" variant={'secondary'}>
+                <Button className="w-full md:w-auto bg-orange-500 text-white rounded-full px-3 py-2 flex flex-row justify-between items-center gap-2 hover:bg-orange-400" variant={'secondary'}>
                   Go to dashboard
-                  <ChevronRight className='h-4 w-4 text-gray-500 ' />  
+                  <ChevronRight className='h-4 w-4 text-gray-200 ' />  
                 </Button>
               </Link>
             </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 p-10 pt-24">
 
-            <div className='p-10 bg-neutral-900 flex flex-col text-white border-none border-zinc-800 gap-2 rounded-lg'>
+            <div className='p-10 bg-neutral-900 flex flex-col text-white border-none border-zinc-800 gap-2 rounded-lg cursor-pointer'>
                 <div className="flex justify-center items-center bg-orange-500 rounded-xl w-fit p-2">
-                  <LayoutPanelTop className=""/>
+                  <LayoutPanelTop />
                 </div>
                 <div className="font-bold text-lg pt-4">
                     25+ Templates
@@ -126,15 +126,15 @@ export default function Home() {
                     Responsive, and mobile-first project on the web
                 </div>
 
-                <div className="flex items-center py-2 text-neutral-50">
+                <div className="flex items-center py-2 text-neutral-50 group">
                   <p className="text-orange-400">
                     Learn more
                   </p>
-                   <ChevronRight className="h-4 w-4 ml-4"/>
+                   <ChevronRight className="h-4 w-4 ml-4 group-hover:translate-x-1 duration-300"/>
                 </div>
 
             </div>
-            <div className='p-10 bg-neutral-900 flex flex-col text-white border-none border-zinc-800 gap-2 rounded-lg'>
+            <div className='p-10 bg-neutral-900 flex flex-col text-white border-none border-zinc-800 gap-2 rounded-lg cursor-pointer'>
                 <div className="flex justify-center items-center bg-orange-500 rounded-xl w-fit p-2">
                 <SwatchBook />
                 </div>
@@ -145,15 +145,15 @@ export default function Home() {
                     Components are easily customized and extendable
                 </div>
 
-                <div className="flex items-center py-2 text-neutral-50">
+                <div className="flex items-center py-2 text-neutral-50 group ">
                   <p className="text-orange-400">
                     Learn more
                   </p>
-                   <ChevronRight className="h-4 w-4 ml-4"/>
+                   <ChevronRight className="h-4 w-4 ml-4 group-hover:translate-x-1 duration-300"/>
                 </div>
 
             </div>
-            <div className='p-10 bg-neutral-900 flex flex-col text-white border-none border-zinc-800 gap-2 rounded-lg'>
+            <div className='p-10 bg-neutral-900 flex flex-col text-white border-none border-zinc-800 gap-2 rounded-lg cursor-pointer'>
                 <div className="flex justify-center items-center bg-orange-500 rounded-xl w-fit p-2">
                   <BookOpenCheck />
                 </div>
@@ -164,15 +164,15 @@ export default function Home() {
                     Every components and plugin is well documented
                 </div>
 
-                <div className="flex items-center py-2 text-neutral-50">
+                <div className="flex items-center py-2 text-neutral-50 group">
                   <p className="text-orange-400">
                     Learn more
                   </p>
-                   <ChevronRight className="h-4 w-4 ml-4"/>
+                   <ChevronRight className="h-4 w-4 ml-4 group-hover:translate-x-1 duration-300"/>
                 </div>
 
             </div>
-            <div className='p-10 bg-neutral-900 flex flex-col text-white border-none border-zinc-800 gap-2 rounded-lg'>
+            <div className='p-10 bg-neutral-900 flex flex-col text-white border-none border-zinc-800 gap-2 rounded-lg cursor-pointer'>
                 <div className="flex justify-center items-center bg-orange-500 rounded-xl w-fit p-2">
                   <MessagesSquare />  
                 </div>
@@ -183,11 +183,11 @@ export default function Home() {
                     Contact us 24 hours a day, 7 days a week
                 </div>
 
-                <div className="flex items-center py-2 text-neutral-50">
+                <div className="flex items-center py-2 text-neutral-50 group">
                   <p className="text-orange-400">
                     Learn more
-                  </p>
-                   <ChevronRight className="h-4 w-4 ml-4"/>
+                  </p> 
+                   <ChevronRight className="h-4 w-4 ml-4 group-hover:translate-x-1 duration-300"/>
                 </div>
 
             </div>

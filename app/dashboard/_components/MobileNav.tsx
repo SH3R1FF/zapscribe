@@ -17,7 +17,7 @@ function MobileNav() {
   return (
     <div className='md:hidden block '>
         <Sheet>
-        <SheetTrigger><MenuIcon className='text-neutral-600'/></SheetTrigger>
+        <SheetTrigger><MenuIcon className='text-neutral-700'/></SheetTrigger>
         <SheetContent className='bg-neutral-900 border-2 border-zinc-800'>
             <SheetHeader>
             <SheetTitle hidden>Are you absolutely sure?</SheetTitle>

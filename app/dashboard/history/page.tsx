@@ -6,7 +6,7 @@ import { desc, eq } from 'drizzle-orm';
 import Image from 'next/image';
 import React from 'react';
 import CopyButton from './_components/CopyButton';
-import moment from 'moment';
+
 import {
   Table,
   TableBody,
@@ -17,7 +17,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import logo from "../../../public/logo.svg"
 
 export interface HISTORY {
   id: number;
@@ -70,20 +69,25 @@ async function History() {
         </TableHeader>
         <TableBody className='text-neutral-500'>
           {HistoryList.map((item: HISTORY, index: number) => (
-            <TableRow key={index}>
+            <TableRow key={index} className=''>
               <TableCell className="">
-                <Image
-                  src={GetTemplateName(item.templateSlug)?.icon || '/logo.svg'}
-                  alt="Template Icon"
-                  width={25}
-                  height={25}
-                  className="max-sm:h-[16px] max-sm:w-[16px]"
-                />
-                {GetTemplateName(item.templateSlug)?.name}
+                <div className='flex items-center gap-4 pr-4'>
+
+                  <Image
+                    src={GetTemplateName(item.templateSlug)?.icon || '/logo.svg'}
+                    alt="Template Icon"
+                    width={25}
+                    height={25}
+                    className="max-sm:h-[16px] max-sm:w-[16px] "
+                    />
+                  {GetTemplateName(item.templateSlug)?.name}
+                  </div>
               </TableCell>
 
-              <TableCell className="line-clamp-2 max-w-[400px]">
-                {item.aiResponse?.toString() ?? 'No Response'}
+              <TableCell className="line-clamp-3 p-0 max-w-[300px]">
+                <div className='p-1'>
+                  {item.aiResponse?.toString() ?? 'No Response'}
+                </div>
               </TableCell>
               {/* <TableCell>{item.createdAt ? moment(item.createdAt).format('DD/MM/YYYY') : 'Unknown Date'} </TableCell> */}
               {/* <TableCell>{item.createdAt ? moment(item.createdAt).format("MMM Do YY ") : 'Unknown Date'}</TableCell> */}
@@ -92,7 +96,7 @@ async function History() {
               <TableCell>{item.createdAt}</TableCell>
               
               <TableCell>{item.aiResponse?.length || 0}</TableCell>
-              <TableCell className="text-right">
+              <TableCell className="text-right ">
                 <CopyButton textToCopy={item.aiResponse ?? ''} />
               </TableCell>
             </TableRow>

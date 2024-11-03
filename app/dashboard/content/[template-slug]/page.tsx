@@ -78,7 +78,7 @@ function CreateNewContent(props: Props) {
     return (
         <div className='lg:p-10 p-5'>
             <Link href={'/dashboard'}>
-                <Button className='bg-orange-500 hover:bg-amber-700 text-neutral-800 '><ArrowLeft/> Back</Button>
+                <Button className='bg-orange-500 hover:bg-orange-400 text-neutral-100'><ArrowLeft/> Back</Button>
             </Link>
             <div className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 l gap-5 py-5'>
                 {/* FormSection */}

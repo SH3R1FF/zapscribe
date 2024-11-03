@@ -49,7 +49,7 @@ function OutputSection({ aiOutput }: Props) {
     <div className="bg-neutral-900 shadow-lg border border-zinc-800 rounded-lg">
       <div className="flex justify-between items-center p-5">
         <h2 className="font-medium text-lg bg-[radial-gradient(100%_100%_at_top_left,white,white,#f97300)] text-transparent bg-clip-text">Output</h2>
-        <Button onClick={handleCopy} className="bg-orange-500 hover:bg-amber-700 text-neutral-800">
+        <Button onClick={handleCopy} className="bg-orange-500 hover:bg-orange-400 text-neutral-100">
           <Copy />Copy
         </Button>
       </div>
