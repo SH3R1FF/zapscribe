@@ -80,7 +80,7 @@ function CreateNewContent(props: Props) {
             <Link href={'/dashboard'}>
                 <Button className='bg-orange-500 hover:bg-orange-400 text-neutral-100'><ArrowLeft/> Back</Button>
             </Link>
-            <div className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 l gap-5 py-5'>
+            <div className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 lg:gap-5 max-sm:space-y-5 py-5'>
                 {/* FormSection */}
                 <FormSection
                     selectedTemplate={selectedTemplate}
